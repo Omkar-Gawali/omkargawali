@@ -112,7 +112,7 @@ export async function POST(req: Request) {
     style="text-decoration:none;display:inline-flex;align-items:center;margin-right:18px;"
   >
     <img
-      src="https://your-domain.com/email-icons/github.png"
+      src="https://omkargawali.vercel.app/icons/github.png"
       width="20"
       height="20"
       alt="GitHub"
@@ -132,7 +132,7 @@ export async function POST(req: Request) {
     style="text-decoration:none;display:inline-flex;align-items:center;"
   >
     <img
-      src="https://your-domain.com/email-icons/linkedin.png"
+      src="https://omkargawali.vercel.app/icons/linkedin.png"
       width="20"
       height="20"
       alt="LinkedIn"
