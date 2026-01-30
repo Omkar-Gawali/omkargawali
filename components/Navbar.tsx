@@ -15,8 +15,7 @@ export default function Navbar() {
         <div className="container">
           {/* BRAND */}
           <Link href="/" className="navbar-brand brand-logo">
-            <span>Omkar</span>
-            <span className="brand-accent">Gawali</span>
+            <span>Omkar Gawali</span>
           </Link>
 
           {/* TOGGLER */}

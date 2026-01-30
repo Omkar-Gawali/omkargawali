@@ -12,6 +12,9 @@
   --transition: all 0.3s ease;
 }
 
+body{
+  font-family: 'Times New Roman', Times, serif;
+}
 /* ===============================
    HEADER & NAVBAR
 ================================ */
@@ -41,23 +44,16 @@
    BRAND
 ================================ */
 .brand-logo {
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 1px;
-  color: var(--text-white);
   text-decoration: none;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  text-transform: uppercase;
 }
 
-.brand-logo span {
-  transition: var(--transition);
-}
-
-.brand-logo .brand-accent {
-  color: var(--blue-main);
-  margin-left: 4px;
-}
-
-.brand-logo:hover .brand-accent {
+.brand-logo:hover {
   color: var(--blue-light);
 }
 
@@ -945,4 +941,56 @@
 html,
 body {
   overflow-x: hidden;
+}
+
+/* ===============================
+   FOOTER (MADE WITH LOVE)
+================================ */
+.site-footer {
+  padding: 1.6rem 0;
+  background: #0b1220;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.footer-text span {
+  color: var(--blue-main);
+  font-weight: 600;
+}
+
+/* Heart icon */
+.footer-heart {
+  color: #ef4444; /* soft red */
+  font-size: 0.8rem;
+  margin: 0 2px;
+  animation: heartBeat 1.6s infinite ease-in-out;
+}
+
+/* Subtle heartbeat animation */
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
