@@ -72,35 +72,78 @@ export default function AboutPage() {
         </div>
 
         {/* EDUCATION */}
-        <div className="education-section">
-          <h3 className="subheading text-center">
-            <i className="fa-solid fa-graduation-cap"></i> Education
+        <div className="mt-5">
+          <h3 className="text-center fw-bold mb-4 d-flex justify-content-center align-items-center gap-2">
+            <i className="fa-solid fa-graduation-cap text-primary"></i>
+            Education
           </h3>
 
-          <div className="row g-4 mt-3">
-            <div className="col-md-4">
-              <div className="edu-card h-100">
-                <h4>B.E. in AI & Data Science</h4>
-                <p className="edu-meta">Terna Engineering College, Nerul</p>
-                <span className="edu-duration">2024 – 2027</span>
+          <div className="position-relative">
+            {/* vertical line */}
+            <div
+              className="position-absolute top-0 bottom-0 bg-primary opacity-25"
+              style={{
+                width: "4px",
+                left: "7px", // EXACT center of 15px dot
+                transform: "translateX(-50%)",
+              }}
+            />
+
+            {/* ITEM */}
+            <div className="d-flex gap-4 mb-4">
+              <span
+                className="bg-primary rounded-circle"
+                style={{ width: "15px", height: "15px", zIndex: 1 }}
+              />
+
+              <div className="card border-0 shadow-sm rounded-4 p-4 w-100">
+                <h5 className="fw-bold mb-1">B.E. in AI & Data Science</h5>
+                <p className="text-muted mb-1">
+                  Terna Engineering College, Nerul
+                </p>
+                <span className="text-primary fw-semibold small">
+                  2024 – 2027
+                </span>
               </div>
             </div>
 
-            <div className="col-md-4">
-              <div className="edu-card h-100">
-                <h4>Diploma in Information Technology</h4>
-                <p className="edu-meta">Government Polytechnic Mumbai</p>
-                <span className="edu-duration">2021 – 2024</span>
-                <span className="edu-badge">93.42%</span>
+            {/* ITEM */}
+            <div className="d-flex gap-4 mb-4">
+              <span
+                className="bg-primary rounded-circle"
+                style={{ width: "15px", height: "15px", zIndex: 1 }}
+              />
+
+              <div className="card border-0 shadow-sm rounded-4 p-4 w-100">
+                <h5 className="fw-bold mb-1">
+                  Diploma in Information Technology
+                </h5>
+                <p className="text-muted mb-2">Government Polytechnic Mumbai</p>
+
+                <div className="d-flex align-items-center gap-2">
+                  <span className="text-primary fw-semibold small">
+                    2021 – 2024
+                  </span>
+                  <span className="badge bg-primary rounded-pill">93.42%</span>
+                </div>
               </div>
             </div>
 
-            <div className="col-md-4">
-              <div className="edu-card h-100">
-                <h4>Secondary School Certificate</h4>
-                <p className="edu-meta">K.E.M High School</p>
-                <span className="edu-duration">2021</span>
-                <span className="edu-badge">94%</span>
+            {/* ITEM */}
+            <div className="d-flex gap-4">
+              <span
+                className="bg-primary rounded-circle"
+                style={{ width: "15px", height: "15px", zIndex: 1 }}
+              />
+
+              <div className="card border-0 shadow-sm rounded-4 p-4 w-100">
+                <h5 className="fw-bold mb-1">Secondary School Certificate</h5>
+                <p className="text-muted mb-2">K.E.M High School</p>
+
+                <div className="d-flex align-items-center gap-2">
+                  <span className="text-primary fw-semibold small">2021</span>
+                  <span className="badge bg-primary rounded-pill">94%</span>
+                </div>
               </div>
             </div>
           </div>
