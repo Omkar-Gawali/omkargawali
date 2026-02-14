@@ -84,7 +84,7 @@ export default function HomePage() {
                 <i className="fa-solid fa-diagram-project"></i> View Projects
               </a>
               <a
-                href="/assests/Gawali_Omkar.pdf"
+                href="/assests/Gawali_Omkar_Resume.pdf"
                 target="_blank"
                 className="btn secondary-btn"
               >

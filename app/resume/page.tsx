@@ -41,27 +41,6 @@ export default function Resume() {
 
               {/* EXPERIENCE ITEM */}
               <div className="experience-item">
-                <h4>Web Developer Intern</h4>
-                <span className="experience-meta">
-                  Kiwi Connect Digital · Remote
-                </span>
-                <span className="experience-duration">Dec 2025 – Present</span>
-
-                <ul>
-                  <li>
-                    Improved UI and responsiveness of a digital signage platform
-                    and developed a React Native mobile application from
-                    scratch.
-                  </li>
-                  <li>
-                    Built and deployed a Next.js dental website with a
-                    MERN-based admin panel using REST APIs.
-                  </li>
-                </ul>
-              </div>
-
-              {/* EXPERIENCE ITEM */}
-              <div className="experience-item">
                 <h4>Content Creator Intern</h4>
                 <span className="experience-meta">
                   Apptroid Technologies Pvt. Ltd. · Mumbai
@@ -70,15 +49,17 @@ export default function Resume() {
 
                 <ul>
                   <li>
-                    Created structured C++ programming tutorials and learning
-                    resources.
+                    Created 30+ structured C++ programming tutorials covering
+                    core concepts such as OOP, STL, and problem solving
+                    techniques.
                   </li>
                   <li>
-                    Used tools like Canva and ChatGPT to enhance course quality.
+                    Utilized Canva for content design and ChatGPT to enhance
+                    clarity, structure, and explanation quality.
                   </li>
                   <li>
-                    Collaborated with teams to deliver engaging educational
-                    content.
+                    Improved learner engagement by presenting technical concepts
+                    in a beginner-friendly format.
                   </li>
                 </ul>
               </div>
@@ -89,7 +70,7 @@ export default function Resume() {
         {/* DOWNLOAD BUTTON */}
         <div className="text-center mt-5">
           <a
-            href="/assests/Gawali_Omkar.pdf"
+            href="/assests/Gawali_Omkar_Resume.pdf"
             target="_blank"
             className="btn resume-download-btn"
           >
