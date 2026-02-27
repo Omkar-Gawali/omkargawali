@@ -118,11 +118,11 @@ export default function HomePage() {
 
               <div className="profile-stats">
                 <div>
-                  <strong>10+</strong>
+                  <strong>4+</strong>
                   <span>Projects</span>
                 </div>
                 <div>
-                  <strong>2</strong>
+                  <strong>1</strong>
                   <span>Internships</span>
                 </div>
                 <div>
