@@ -404,7 +404,7 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="/assests/Gawali_Omkar_Resume.pdf"
+                  href="/assests/Omkar Gawali -  Full Stack Developer.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="og-btn-secondary"

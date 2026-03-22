@@ -366,7 +366,7 @@ export default function Resume() {
             </div>
 
             <a
-              href="/assests/Gawali_Omkar_Resume.pdf"
+              href="/assests/Omkar Gawali -  Full Stack Developer.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="rs-dl-mini"
@@ -568,7 +568,7 @@ export default function Resume() {
           {/* ── CTA ROW ── */}
           <div className="cta-row si">
             <a
-              href="/assests/Gawali_Omkar_Resume.pdf"
+              href="/assests/Omkar Gawali -  Full Stack Developer.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="rs-dl-mini"
