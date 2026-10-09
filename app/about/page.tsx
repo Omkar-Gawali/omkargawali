@@ -1,18 +1,54 @@
 "use client";
 
 export default function AboutPage() {
+  // `prefix` fixes icons that were wrongly rendered with fa-brands before
   const techSkills = [
-    { icon: "fa-html5", label: "HTML", color: "#e34f26" },
-    { icon: "fa-css3-alt", label: "CSS", color: "#1572b6" },
-    { icon: "fa-js", label: "JavaScript", color: "#f7df1e" },
-    { icon: "fa-react", label: "React", color: "#61dafb" },
-    { icon: "fa-node-js", label: "Node.js", color: "#339933" },
-    { icon: "fa-database", label: "MongoDB", color: "#22d3a5" },
-    { icon: "fa-git-alt", label: "Git", color: "#f05032" },
-    { icon: "fa-square-js", label: "Next.js", color: "#a78bfa" },
-    { icon: "fa-server", label: "Express", color: "#9090b0" },
-    { icon: "fa-code", label: "REST APIs", color: "#38bdf8" },
-    { icon: "fa-vial", label: "Postman", color: "#f59e0b" },
+    { prefix: "fa-brands", icon: "fa-html5", label: "HTML", color: "#e34f26" },
+    {
+      prefix: "fa-brands",
+      icon: "fa-css3-alt",
+      label: "CSS",
+      color: "#1572b6",
+    },
+    {
+      prefix: "fa-brands",
+      icon: "fa-js",
+      label: "JavaScript",
+      color: "#ca8a04",
+    },
+    { prefix: "fa-brands", icon: "fa-react", label: "React", color: "#0891b2" },
+    {
+      prefix: "fa-brands",
+      icon: "fa-node-js",
+      label: "Node.js",
+      color: "#339933",
+    },
+    {
+      prefix: "fa-solid",
+      icon: "fa-database",
+      label: "MongoDB",
+      color: "#059669",
+    },
+    { prefix: "fa-brands", icon: "fa-git-alt", label: "Git", color: "#f05032" },
+    {
+      prefix: "fa-brands",
+      icon: "fa-square-js",
+      label: "Next.js",
+      color: "#11142b",
+    },
+    {
+      prefix: "fa-solid",
+      icon: "fa-server",
+      label: "Express",
+      color: "#64748b",
+    },
+    {
+      prefix: "fa-solid",
+      icon: "fa-code",
+      label: "REST APIs",
+      color: "#0284c7",
+    },
+    { prefix: "fa-solid", icon: "fa-vial", label: "Postman", color: "#d97706" },
   ];
 
   const softSkills = [
@@ -30,7 +66,7 @@ export default function AboutPage() {
       year: "2024 – 2027",
       badge: null,
       icon: "fa-graduation-cap",
-      color: "#a78bfa",
+      color: "#6d5efc",
     },
     {
       degree: "Diploma in Information Technology",
@@ -38,7 +74,7 @@ export default function AboutPage() {
       year: "2021 – 2024",
       badge: "93.42%",
       icon: "fa-laptop-code",
-      color: "#38bdf8",
+      color: "#0284c7",
     },
     {
       degree: "Secondary School Certificate",
@@ -46,177 +82,169 @@ export default function AboutPage() {
       year: "2021",
       badge: "94%",
       icon: "fa-school",
-      color: "#22d3a5",
+      color: "#059669",
     },
+  ];
+
+  const facts = [
+    { icon: "fa-location-dot", text: "Mumbai, India" },
+    { icon: "fa-graduation-cap", text: "B.E. AI & DS 2027" },
+    { icon: "fa-briefcase", text: "1 Internship" },
   ];
 
   return (
     <>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+
         .ab-section {
-          background: #06060a;
+          --bg: #f7f8fc; --surface: #fff; --border: #e4e7f1;
+          --ink: #11142b; --text: #4a5070; --muted: #7a809c;
+          --accent: #6d5efc; --accent-soft: rgba(109,94,252,0.08);
+
+          background: var(--bg);
+          color: var(--text);
+          font-family: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
           min-height: 100vh;
           padding: 80px 0;
           position: relative;
           overflow: hidden;
         }
+        .ab-display { font-family: Syne, Inter, system-ui, sans-serif; }
         .ab-blob {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(100px);
-          pointer-events: none;
+          position: absolute; border-radius: 50%;
+          filter: blur(110px); pointer-events: none;
           animation: abBlob 14s ease-in-out infinite;
         }
         @keyframes abBlob {
           0%,100% { transform: translateY(0) scale(1); }
-          50%      { transform: translateY(-30px) scale(1.04); }
+          50%     { transform: translateY(-30px) scale(1.04); }
         }
         .ab-grid {
-          position: absolute;
-          inset: 0;
+          position: absolute; inset: 0;
           background-image:
-            linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
+            linear-gradient(rgba(17,20,43,0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(17,20,43,0.045) 1px, transparent 1px);
           background-size: 52px 52px;
+          -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 20%, black 20%, transparent 100%);
           mask-image: radial-gradient(ellipse 80% 80% at 50% 20%, black 20%, transparent 100%);
           pointer-events: none;
+        }
+        .ab-eyebrow {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 7px 14px; border-radius: 100px;
+          background: rgba(109,94,252,0.09);
+          border: 1px solid rgba(109,94,252,0.22);
+          font-size: 0.8rem; font-weight: 600; color: #5446e0;
         }
 
         /* Cards */
         .ab-card {
-          background: #0e0e17;
-          border: 1px solid #1e1e2a;
+          background: var(--surface);
+          border: 1px solid var(--border);
           border-radius: 16px;
           padding: 28px 24px;
           height: 100%;
+          box-shadow: 0 2px 8px rgba(40,45,100,0.05);
           transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
         }
         .ab-card:hover {
-          border-color: #6c63ff;
+          border-color: rgba(109,94,252,0.5);
           transform: translateY(-4px);
-          box-shadow: 0 12px 40px rgba(108,99,255,0.12);
+          box-shadow: 0 16px 40px rgba(109,94,252,0.14);
         }
+        .ab-card-title { font-size: 1.02rem; font-weight: 700; color: var(--ink); }
 
-        /* Tech skill pills */
         .ab-tech-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 5px 12px;
-          border-radius: 8px;
-          background: rgba(108,99,255,0.06);
-          border: 1px solid rgba(108,99,255,0.14);
-          font-size: 0.78rem;
-          font-weight: 500;
-          color: #f3f3f9;
-          transition: all 0.2s;
-          cursor: default;
+          display: inline-flex; align-items: center; gap: 6px;
+          padding: 5px 12px; border-radius: 8px;
+          background: var(--bg); border: 1px solid var(--border);
+          font-size: 0.78rem; font-weight: 500; color: var(--text);
+          transition: all 0.2s; cursor: default;
         }
         .ab-tech-pill:hover {
-          background: rgba(108,99,255,0.12);
-          border-color: rgba(108,99,255,0.28);
-          color: #c0c0e0;
+          background: var(--accent-soft);
+          border-color: rgba(109,94,252,0.3);
+          color: var(--ink);
           transform: translateY(-1px);
         }
 
-        /* Soft skill rows */
         .ab-soft-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 10px 14px;
-          border-radius: 10px;
-          background: rgba(255,255,255,0.02);
-          border: 1px solid #1a1a26;
-          font-size: 0.85rem;
-          color: #f0f0f6;
-          transition: all 0.2s;
-          cursor: default;
+          display: flex; align-items: center; gap: 12px;
+          padding: 10px 14px; border-radius: 10px;
+          background: var(--bg); border: 1px solid var(--border);
+          font-size: 0.86rem; font-weight: 500; color: var(--text);
+          transition: all 0.2s; cursor: default;
         }
         .ab-soft-row:hover {
-          background: rgba(108,99,255,0.07);
-          border-color: rgba(108,99,255,0.2);
-          color: #c0c0e0;
+          background: var(--accent-soft);
+          border-color: rgba(109,94,252,0.3);
+          color: var(--ink);
         }
 
-        /* Education card */
         .ab-edu-card {
-          background: #0e0e17;
-          border: 1px solid #1e1e2a;
+          background: var(--surface);
+          border: 1px solid var(--border);
           border-radius: 14px;
           padding: 20px 22px;
           flex: 1;
-          transition: border-color 0.25s, transform 0.2s;
+          box-shadow: 0 2px 8px rgba(40,45,100,0.05);
+          transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
         }
         .ab-edu-card:hover {
-          border-color: #252535;
+          border-color: #c9ceea;
           transform: translateX(4px);
+          box-shadow: 0 10px 28px rgba(40,45,100,0.1);
         }
-
-        /* Timeline dot */
         .ab-dot {
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          flex-shrink: 0;
-          margin-top: 22px;
-          position: relative;
-          z-index: 1;
+          width: 14px; height: 14px; border-radius: 50%;
+          flex-shrink: 0; margin-top: 22px;
+          position: relative; z-index: 1;
+          border: 3px solid #fff;
+          box-sizing: content-box;
         }
+        @media (prefers-reduced-motion: reduce) { .ab-blob { animation: none; } }
       `}</style>
 
       <section className="ab-section">
-        {/* Background */}
         <div
           className="ab-blob"
           style={{
             width: 500,
             height: 500,
-            background: "#6c63ff",
-            opacity: 0.06,
-            top: -150,
-            left: -100,
+            background: "#6d5efc",
+            opacity: 0.13,
+            top: -170,
+            left: -120,
           }}
         />
         <div
           className="ab-blob"
           style={{
-            width: 400,
-            height: 400,
-            background: "#38bdf8",
-            opacity: 0.04,
-            bottom: -100,
-            right: -80,
+            width: 420,
+            height: 420,
+            background: "#0ea5e9",
+            opacity: 0.1,
+            bottom: -120,
+            right: -90,
             animationDelay: "-6s",
           }}
         />
         <div className="ab-grid" />
 
         <div className="container position-relative" style={{ zIndex: 1 }}>
-          {/* ── Header ── */}
+          {/* Header */}
           <div className="text-center mb-5">
-            <div
-              className="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-3"
-              style={{
-                background: "rgba(108,99,255,0.1)",
-                border: "1px solid rgba(108,99,255,0.22)",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#a78bfa",
-              }}
-            >
+            <div className="ab-eyebrow mb-3">
               <i className="fa-solid fa-user" style={{ fontSize: "0.75rem" }} />
-              About Me
+              About me
             </div>
             <h2
-              className="fw-bold mb-2"
+              className="ab-display fw-bold mb-2"
               style={{
-                fontFamily: "Syne, sans-serif",
-                fontSize: "clamp(2.6rem,5.5vw,4.2rem)",
+                fontSize: "clamp(2.4rem,5vw,3.8rem)",
                 letterSpacing: "-0.03em",
-                color: "#f0f0f8",
+                color: "var(--ink)",
                 lineHeight: 1.1,
               }}
             >
@@ -224,9 +252,9 @@ export default function AboutPage() {
             </h2>
             <p
               style={{
-                color: "#f2f2f6",
-                fontSize: "0.95rem",
-                maxWidth: 440,
+                color: "var(--text)",
+                fontSize: "1rem",
+                maxWidth: 460,
                 margin: "0 auto",
               }}
             >
@@ -234,7 +262,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* ── Top 3 cards ── */}
+          {/* Top 3 cards */}
           <div className="row g-3 mb-5">
             {/* Who I am */}
             <div className="col-12 col-md-4">
@@ -244,25 +272,17 @@ export default function AboutPage() {
                   style={{
                     width: 44,
                     height: 44,
-                    background: "rgba(108,99,255,0.1)",
-                    color: "#a78bfa",
+                    background: "rgba(109,94,252,0.1)",
+                    color: "#6d5efc",
                   }}
                 >
-                  <i
-                    className="fa-solid fa-user"
-                    style={{ fontSize: "1rem" }}
-                  />
+                  <i className="fa-solid fa-user" />
                 </div>
-                <h3
-                  className="fw-semibold mb-3"
-                  style={{ fontSize: "1rem", color: "#e0e0f0" }}
-                >
-                  Who I Am
-                </h3>
+                <h3 className="ab-card-title mb-3">Who I Am</h3>
                 <p
                   style={{
-                    fontSize: "0.875rem",
-                    color: "#f1f1fa",
+                    fontSize: "0.9rem",
+                    color: "var(--text)",
                     lineHeight: 1.8,
                     marginBottom: 0,
                   }}
@@ -272,25 +292,19 @@ export default function AboutPage() {
                   projects that emphasize clean architecture, scalability, and
                   practical problem-solving.
                 </p>
-
-                {/* Quick facts */}
                 <div className="d-flex flex-column gap-2 mt-4">
-                  {[
-                    { icon: "fa-location-dot", text: "Mumbai, India" },
-                    { icon: "fa-graduation-cap", text: "B.E. AI & DS 2027" },
-                    { icon: "fa-briefcase", text: "1 Internship" },
-                  ].map((f, i) => (
+                  {facts.map((f, i) => (
                     <div
                       key={i}
                       className="d-flex align-items-center gap-2"
-                      style={{ fontSize: "0.8rem", color: "#fcfcfc" }}
+                      style={{ fontSize: "0.84rem", color: "var(--text)" }}
                     >
                       <i
                         className={`fa-solid ${f.icon}`}
                         style={{
                           width: 14,
                           textAlign: "center",
-                          color: "#eaeaf4",
+                          color: "#6d5efc",
                         }}
                       />
                       {f.text}
@@ -308,26 +322,18 @@ export default function AboutPage() {
                   style={{
                     width: 44,
                     height: 44,
-                    background: "rgba(56,189,248,0.1)",
-                    color: "#38bdf8",
+                    background: "rgba(14,165,233,0.1)",
+                    color: "#0284c7",
                   }}
                 >
-                  <i
-                    className="fa-solid fa-code"
-                    style={{ fontSize: "1rem" }}
-                  />
+                  <i className="fa-solid fa-code" />
                 </div>
-                <h3
-                  className="fw-semibold mb-3"
-                  style={{ fontSize: "1rem", color: "#e0e0f0" }}
-                >
-                  Technical Skills
-                </h3>
+                <h3 className="ab-card-title mb-3">Technical Skills</h3>
                 <div className="d-flex flex-wrap gap-2">
                   {techSkills.map((s, i) => (
                     <span key={i} className="ab-tech-pill">
                       <i
-                        className={`fa-brands ${s.icon}`}
+                        className={`${s.prefix} ${s.icon}`}
                         style={{ color: s.color, fontSize: "0.82rem" }}
                       />
                       {s.label}
@@ -345,21 +351,13 @@ export default function AboutPage() {
                   style={{
                     width: 44,
                     height: 44,
-                    background: "rgba(34,211,165,0.1)",
-                    color: "#22d3a5",
+                    background: "rgba(5,150,105,0.1)",
+                    color: "#059669",
                   }}
                 >
-                  <i
-                    className="fa-solid fa-people-group"
-                    style={{ fontSize: "1rem" }}
-                  />
+                  <i className="fa-solid fa-people-group" />
                 </div>
-                <h3
-                  className="fw-semibold mb-3"
-                  style={{ fontSize: "1rem", color: "#e0e0f0" }}
-                >
-                  Soft Skills
-                </h3>
+                <h3 className="ab-card-title mb-3">Soft Skills</h3>
                 <div className="d-flex flex-column gap-2">
                   {softSkills.map((s, i) => (
                     <div key={i} className="ab-soft-row">
@@ -367,7 +365,7 @@ export default function AboutPage() {
                         className={`fa-solid ${s.icon}`}
                         style={{
                           fontSize: "0.85rem",
-                          color: "#6c63ff",
+                          color: "#6d5efc",
                           width: 16,
                           textAlign: "center",
                         }}
@@ -380,21 +378,10 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* ── Education timeline ── */}
+          {/* Education */}
           <div>
             <div className="text-center mb-4">
-              <div
-                className="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-3"
-                style={{
-                  background: "rgba(108,99,255,0.1)",
-                  border: "1px solid rgba(108,99,255,0.22)",
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: "#a78bfa",
-                }}
-              >
+              <div className="ab-eyebrow mb-3">
                 <i
                   className="fa-solid fa-graduation-cap"
                   style={{ fontSize: "0.75rem" }}
@@ -402,119 +389,108 @@ export default function AboutPage() {
                 Education
               </div>
               <h2
-                className="fw-bold mb-0"
+                className="ab-display fw-bold mb-0"
                 style={{
-                  fontFamily: "Syne, sans-serif",
                   fontSize: "clamp(1.6rem,3vw,2.2rem)",
                   letterSpacing: "-0.025em",
-                  color: "#f0f0f8",
+                  color: "var(--ink)",
                 }}
               >
                 Academic Background
               </h2>
             </div>
 
-            {/* Timeline */}
             <div
               className="mx-auto"
               style={{ maxWidth: 680, position: "relative" }}
             >
-              {/* Vertical line */}
               <div
                 style={{
                   position: "absolute",
                   top: 28,
                   bottom: 28,
-                  left: 7,
-                  width: 1,
+                  left: 10,
+                  width: 2,
                   background:
-                    "linear-gradient(to bottom, #6c63ff44, #38bdf844, transparent)",
+                    "linear-gradient(to bottom, rgba(109,94,252,0.35), rgba(14,165,233,0.3), transparent)",
                 }}
               />
 
               {education.map((e, i) => (
                 <div key={i} className="d-flex gap-4 mb-3">
-                  {/* Dot */}
                   <div
                     className="ab-dot"
                     style={{
                       background: e.color,
-                      boxShadow: `0 0 10px ${e.color}66`,
+                      boxShadow: `0 0 0 1px ${e.color}55`,
                     }}
                   />
-
-                  {/* Card */}
                   <div className="ab-edu-card">
-                    <div className="d-flex align-items-start justify-content-between gap-3 flex-wrap">
-                      <div>
-                        {/* Icon + degree */}
-                        <div className="d-flex align-items-center gap-2 mb-1">
-                          <div
-                            className="d-flex align-items-center justify-content-center rounded-2"
-                            style={{
-                              width: 28,
-                              height: 28,
-                              background: `${e.color}18`,
-                              flexShrink: 0,
-                            }}
-                          >
-                            <i
-                              className={`fa-solid ${e.icon}`}
-                              style={{ fontSize: "0.75rem", color: e.color }}
-                            />
-                          </div>
-                          <h5
-                            className="fw-bold mb-0"
-                            style={{ fontSize: "0.92rem", color: "#f0f0f8" }}
-                          >
-                            {e.degree}
-                          </h5>
-                        </div>
-                        <p
+                    <div className="d-flex align-items-center gap-2 mb-1">
+                      <div
+                        className="d-flex align-items-center justify-content-center rounded-2"
+                        style={{
+                          width: 28,
+                          height: 28,
+                          background: `${e.color}18`,
+                          flexShrink: 0,
+                        }}
+                      >
+                        <i
+                          className={`fa-solid ${e.icon}`}
+                          style={{ fontSize: "0.75rem", color: e.color }}
+                        />
+                      </div>
+                      <h5
+                        className="fw-bold mb-0"
+                        style={{ fontSize: "0.95rem", color: "var(--ink)" }}
+                      >
+                        {e.degree}
+                      </h5>
+                    </div>
+                    <p
+                      style={{
+                        fontSize: "0.84rem",
+                        color: "var(--text)",
+                        marginBottom: 8,
+                        paddingLeft: 36,
+                      }}
+                    >
+                      {e.school}
+                    </p>
+                    <div
+                      className="d-flex align-items-center flex-wrap gap-2"
+                      style={{ paddingLeft: 36 }}
+                    >
+                      <span
+                        className="d-inline-flex align-items-center gap-1 px-2 py-1 rounded-pill"
+                        style={{
+                          background: `${e.color}14`,
+                          border: `1px solid ${e.color}33`,
+                          color: e.color,
+                          fontSize: "0.74rem",
+                          fontWeight: 600,
+                        }}
+                      >
+                        <i
+                          className="fa-solid fa-calendar"
+                          style={{ fontSize: "0.65rem" }}
+                        />
+                        {e.year}
+                      </span>
+                      {e.badge && (
+                        <span
+                          className="px-2 py-1 rounded-pill fw-bold"
                           style={{
-                            fontSize: "0.8rem",
-                            color: "#eaeaf0",
-                            marginBottom: 6,
-                            paddingLeft: 36,
+                            background: "#ecfdf5",
+                            border: "1px solid #a7f3d0",
+                            color: "#047857",
+                            fontSize: "0.74rem",
                           }}
                         >
-                          {e.school}
-                        </p>
-                        <div
-                          className="d-flex align-items-center gap-2"
-                          style={{ paddingLeft: 36 }}
-                        >
-                          <span
-                            className="d-inline-flex align-items-center gap-1 px-2 py-1 rounded-pill"
-                            style={{
-                              background: `${e.color}14`,
-                              border: `1px solid ${e.color}33`,
-                              color: e.color,
-                              fontSize: "0.72rem",
-                              fontWeight: 600,
-                            }}
-                          >
-                            <i
-                              className="fa-solid fa-calendar"
-                              style={{ fontSize: "0.65rem" }}
-                            />
-                            {e.year}
-                          </span>
-                          {e.badge && (
-                            <span
-                              className="px-2 py-1 rounded-pill fw-bold"
-                              style={{
-                                background: "rgba(34,211,165,0.1)",
-                                border: "1px solid rgba(34,211,165,0.2)",
-                                color: "#22d3a5",
-                                fontSize: "0.72rem",
-                              }}
-                            >
-                              🏆 {e.badge}
-                            </span>
-                          )}
-                        </div>
-                      </div>
+                          🏆 {e.badge}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

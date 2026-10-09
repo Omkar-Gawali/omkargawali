@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function HomePage() {
-  const texts = [
-    "MERN Stack Developer",
-    "AI/ML Integrator",
-    "Full Stack Engineer",
-  ];
+const texts = [
+  "MERN Stack Developer",
+  "AI/ML Integrator",
+  "Full Stack Engineer",
+];
 
+export default function HomePage() {
   const [textIndex, setTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -39,17 +39,17 @@ export default function HomePage() {
 
   const stats = [
     {
-      value: "4+",
+      value: "7",
       label: "Projects",
       icon: "fa-diagram-project",
-      color: "#a78bfa",
+      color: "#6d5efc",
     },
-    { value: "1", label: "Internship", icon: "fa-briefcase", color: "#22d3a5" },
+    { value: "1", label: "Internship", icon: "fa-briefcase", color: "#059669" },
     {
       value: "2027",
       label: "Graduate",
       icon: "fa-graduation-cap",
-      color: "#38bdf8",
+      color: "#0284c7",
     },
   ];
 
@@ -87,47 +87,72 @@ export default function HomePage() {
     "FastAPI",
   ];
 
+  const infoRows = [
+    { icon: "fa-location-dot", text: "Mumbai, India" },
+    { icon: "fa-graduation-cap", text: "B.E. AI & Data Science · 2027" },
+  ];
+
   return (
     <>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+
         .og-section {
+          --og-bg: #f7f8fc;
+          --og-surface: #ffffff;
+          --og-border: #e4e7f1;
+          --og-ink: #11142b;
+          --og-text: #4a5070;
+          --og-muted: #7a809c;
+          --og-accent: #6d5efc;
+          --og-accent-2: #0ea5e9;
+          --og-accent-soft: rgba(109, 94, 252, 0.08);
+
           min-height: calc(100vh - 64px);
-          background: #06060a;
+          background: var(--og-bg);
+          color: var(--og-text);
+          font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
           position: relative;
           overflow: hidden;
           padding: 60px 0;
           display: flex;
           align-items: center;
         }
+        .og-display {
+          font-family: Syne, Inter, system-ui, sans-serif;
+        }
+
+        /* Soft background glows */
         .og-blob1 {
           position: absolute;
-          width: 600px; height: 600px;
+          width: 560px; height: 560px;
           border-radius: 50%;
-          background: #6c63ff;
-          opacity: 0.07;
-          filter: blur(110px);
-          top: -200px; left: -150px;
-          animation: blobFloat 16s ease-in-out infinite;
+          background: #6d5efc;
+          opacity: 0.14;
+          filter: blur(120px);
+          top: -220px; left: -160px;
+          animation: blobFloat 18s ease-in-out infinite;
           pointer-events: none;
         }
         .og-blob2 {
           position: absolute;
-          width: 500px; height: 500px;
+          width: 460px; height: 460px;
           border-radius: 50%;
-          background: #38bdf8;
-          opacity: 0.05;
-          filter: blur(90px);
-          bottom: -150px; right: -100px;
-          animation: blobFloat 12s ease-in-out infinite reverse;
+          background: #0ea5e9;
+          opacity: 0.12;
+          filter: blur(110px);
+          bottom: -160px; right: -120px;
+          animation: blobFloat 14s ease-in-out infinite reverse;
           pointer-events: none;
         }
         .og-grid {
           position: absolute;
           inset: 0;
           background-image:
-            linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+            linear-gradient(rgba(17,20,43,0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(17,20,43,0.045) 1px, transparent 1px);
           background-size: 52px 52px;
+          -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 100%);
           mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 100%);
           pointer-events: none;
         }
@@ -139,20 +164,18 @@ export default function HomePage() {
           gap: 8px;
           padding: 13px 28px;
           border-radius: 12px;
-          background: linear-gradient(135deg,#6c63ff,#8b5cf6);
+          background: linear-gradient(135deg, #6d5efc, #8b5cf6);
           color: #fff;
           font-size: 0.95rem;
           font-weight: 600;
           text-decoration: none;
-          box-shadow: 0 4px 20px rgba(108,99,255,0.35);
-          border: 1px solid rgba(255,255,255,0.1);
-          transition: all 0.25s;
-          position: relative;
-          overflow: hidden;
+          box-shadow: 0 6px 20px rgba(109, 94, 252, 0.3);
+          border: 1px solid rgba(255,255,255,0.2);
+          transition: transform 0.2s, box-shadow 0.2s;
         }
         .og-btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 32px rgba(108,99,255,0.5);
+          box-shadow: 0 10px 30px rgba(109, 94, 252, 0.4);
           color: #fff;
         }
         .og-btn-secondary {
@@ -161,58 +184,78 @@ export default function HomePage() {
           gap: 8px;
           padding: 13px 28px;
           border-radius: 12px;
-          border: 1px solid #1e1e2a;
-          color: #7070a0;
+          border: 1px solid var(--og-border);
+          color: var(--og-ink);
           font-size: 0.95rem;
-          font-weight: 500;
+          font-weight: 600;
           text-decoration: none;
-          background: rgba(255,255,255,0.02);
+          background: var(--og-surface);
+          box-shadow: 0 1px 2px rgba(17,20,43,0.05);
           transition: all 0.2s;
         }
         .og-btn-secondary:hover {
-          border-color: #6c63ff;
-          color: #a78bfa;
-          background: rgba(108,99,255,0.06);
+          border-color: var(--og-accent);
+          color: var(--og-accent);
+          background: var(--og-accent-soft);
+        }
+        .og-btn-primary:focus-visible,
+        .og-btn-secondary:focus-visible,
+        .og-social:focus-visible {
+          outline: 3px solid rgba(109, 94, 252, 0.45);
+          outline-offset: 2px;
         }
 
         /* Social icons */
         .og-social {
-          width: 38px; height: 38px;
+          width: 40px; height: 40px;
           border-radius: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid #1e1e2a;
-          color: #5a5a80;
-          font-size: 1rem;
+          background: var(--og-surface);
+          border: 1px solid var(--og-border);
+          color: var(--og-text);
+          font-size: 1.05rem;
           text-decoration: none;
           transition: all 0.2s;
         }
         .og-social:hover {
-          border-color: #6c63ff;
-          color: #a78bfa;
-          background: rgba(108,99,255,0.1);
+          border-color: var(--og-accent);
+          color: var(--og-accent);
+          background: var(--og-accent-soft);
           transform: translateY(-2px);
+        }
+
+        /* Pills */
+        .og-pill {
+          background: var(--og-surface);
+          border: 1px solid var(--og-border);
+          color: var(--og-text);
+          font-size: 0.84rem;
+          font-weight: 500;
+          box-shadow: 0 1px 2px rgba(17,20,43,0.04);
         }
 
         /* Stat cards */
         .og-stat-card {
-          background: rgba(255,255,255,0.02);
-          border: 1px solid #1a1a26;
+          background: var(--og-bg);
+          border: 1px solid var(--og-border);
           border-radius: 12px;
-          padding: 11px 6px;
+          padding: 12px 6px;
           text-align: center;
-          transition: border-color 0.2s;
+          transition: border-color 0.2s, background 0.2s;
           cursor: default;
         }
-        .og-stat-card:hover { border-color: #252535; }
+        .og-stat-card:hover {
+          border-color: #c9ceea;
+          background: #fff;
+        }
 
         /* Cursor blink */
         .og-cursor {
           width: 2px;
           height: 1.1em;
-          background: #6c63ff;
+          background: var(--og-accent);
           border-radius: 2px;
           display: inline-block;
           animation: blink 1s step-end infinite;
@@ -229,53 +272,61 @@ export default function HomePage() {
           gap: 7px;
           padding: 7px 14px;
           border-radius: 100px;
-          background: rgba(34,211,165,0.08);
-          border: 1px solid rgba(34,211,165,0.22);
+          background: #ecfdf5;
+          border: 1px solid #a7f3d0;
           font-size: 0.75rem;
           font-weight: 600;
-          color: #22d3a5;
+          color: #047857;
+          box-shadow: 0 4px 12px rgba(5,150,105,0.12);
           animation: badgeFloat 3s ease-in-out infinite;
           white-space: nowrap;
         }
         .og-available-dot {
-          width: 6px; height: 6px;
+          width: 7px; height: 7px;
           border-radius: 50%;
-          background: #22d3a5;
+          background: #10b981;
           animation: pulse 2s ease-in-out infinite;
         }
 
-        /* Floating badge */
-        .og-float-badge {
-          position: absolute;
-          bottom: -18px; left: -16px;
-          z-index: 2;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 10px 14px;
-          border-radius: 12px;
-          background: #0e0e17;
-          border: 1px solid #1e1e2a;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-          animation: badgeFloat 4s ease-in-out infinite 1.2s;
+        /* Profile card */
+        .og-card {
+          background: var(--og-surface);
+          border: 1px solid var(--og-border);
+          border-radius: 20px;
+          padding: 28px;
+          box-shadow: 0 20px 50px rgba(40, 45, 100, 0.12), 0 2px 6px rgba(40, 45, 100, 0.05);
+        }
+        .og-tech {
+          padding: 4px 10px;
+          border-radius: 7px;
+          background: var(--og-accent-soft);
+          border: 1px solid rgba(109, 94, 252, 0.18);
+          color: #5446e0;
+          font-size: 0.74rem;
+          font-weight: 600;
         }
 
         /* Keyframes */
         @keyframes blobFloat {
-          0%,100% { transform: translateY(0) scale(1); }
-          50%      { transform: translateY(400px) scale(1.05); }
+          0%,100% { transform: translate(0,0) scale(1); }
+          50%     { transform: translate(40px, 60px) scale(1.06); }
         }
         @keyframes blink {
           0%,100% { opacity: 1; }
-          50%      { opacity: 0; }
+          50%     { opacity: 0; }
         }
         @keyframes badgeFloat {
           0%,100% { transform: translateY(0); }
-          50%      { transform: translateY(-6px); }
+          50%     { transform: translateY(-6px); }
         }
         @keyframes pulse {
-          0%,100% { box-shadow: 0 0 0 0 rgba(34,211,165,0.5); }
-          50%      { box-shadow: 0 0 0 6px rgba(34,211,165,0); }
+          0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.45); }
+          50%     { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .og-blob1, .og-blob2, .og-available, .og-available-dot, .og-cursor {
+            animation: none;
+          }
         }
       `}</style>
 
@@ -293,14 +344,15 @@ export default function HomePage() {
               <div
                 className="d-inline-flex align-items-center gap-2 mb-4 px-3 py-2 rounded-pill"
                 style={{
-                  background: "rgba(108,99,255,0.1)",
-                  border: "1px solid rgba(108,99,255,0.22)",
-                  fontSize: "0.8rem",
-                  color: "#a78bfa",
+                  background: "rgba(109,94,252,0.09)",
+                  border: "1px solid rgba(109,94,252,0.22)",
+                  fontSize: "0.82rem",
+                  fontWeight: 500,
+                  color: "#5446e0",
                 }}
               >
                 <i
-                  className="fa-solid fa-hand-wave"
+                  className="fa-solid fa-hand"
                   style={{ fontSize: "0.85rem" }}
                 />
                 Hi, I&apos;m Omkar Gawali
@@ -308,19 +360,18 @@ export default function HomePage() {
 
               {/* Headline */}
               <h1
-                className="fw-bold mb-3"
+                className="og-display fw-bold mb-3"
                 style={{
-                  fontFamily: "Syne, sans-serif",
                   fontSize: "clamp(2.6rem,5.5vw,4.2rem)",
                   lineHeight: 1.07,
                   letterSpacing: "-0.035em",
-                  color: "#f0f0f8",
+                  color: "var(--og-ink)",
                 }}
               >
                 Building{" "}
                 <span
                   style={{
-                    background: "linear-gradient(135deg,#a78bfa,#38bdf8)",
+                    background: "linear-gradient(135deg,#6d5efc,#0ea5e9)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
@@ -340,14 +391,14 @@ export default function HomePage() {
                   className="fa-solid fa-terminal"
                   style={{
                     fontSize: "0.85rem",
-                    color: "#6c63ff",
+                    color: "var(--og-accent)",
                     flexShrink: 0,
                   }}
                 />
                 <span
                   style={{
                     fontSize: "clamp(1rem,2vw,1.2rem)",
-                    color: "#a78bfa",
+                    color: "#5446e0",
                     fontWeight: 600,
                   }}
                 >
@@ -360,10 +411,10 @@ export default function HomePage() {
               <p
                 className="mb-4"
                 style={{
-                  fontSize: "0.95rem",
-                  color: "#ebebf7",
-                  lineHeight: 1.82,
-                  maxWidth: 520,
+                  fontSize: "1rem",
+                  color: "var(--og-text)",
+                  lineHeight: 1.8,
+                  maxWidth: 540,
                 }}
               >
                 MERN &amp; Full Stack Developer building scalable web apps with
@@ -376,17 +427,11 @@ export default function HomePage() {
                 {highlights.map((h, i) => (
                   <div
                     key={i}
-                    className="d-flex align-items-center gap-2 px-3 py-2 rounded-pill"
-                    style={{
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid #1e1e2a",
-                      fontSize: "0.82rem",
-                      color: "#7070a0",
-                    }}
+                    className="og-pill d-flex align-items-center gap-2 px-3 py-2 rounded-pill"
                   >
                     <i
                       className={`fa-solid ${h.icon}`}
-                      style={{ fontSize: "0.78rem", color: "#6c63ff" }}
+                      style={{ fontSize: "0.78rem", color: "var(--og-accent)" }}
                     />
                     {h.label}
                   </div>
@@ -404,7 +449,7 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="/assests/Omkar Gawali -  Full Stack Developer.pdf"
+                  href="/assets/Omkar Gawali - Full Stack Developer v2.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="og-btn-secondary"
@@ -426,6 +471,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noreferrer"
                     title={s.label}
+                    aria-label={s.label}
                     className="og-social"
                   >
                     <i className={s.icon} />
@@ -446,31 +492,22 @@ export default function HomePage() {
                 </div>
 
                 {/* Main card */}
-                <div
-                  style={{
-                    background: "#0e0e17",
-                    border: "1px solid #1e1e2a",
-                    borderRadius: 20,
-                    padding: 28,
-                    boxShadow: "0 24px 64px rgba(0,0,0,0.55)",
-                  }}
-                >
+                <div className="og-card">
                   {/* Avatar */}
                   <div className="d-flex justify-content-center mb-4">
                     <div style={{ position: "relative" }}>
                       <div
-                        className="d-flex align-items-center justify-content-center"
+                        className="og-display d-flex align-items-center justify-content-center"
                         style={{
                           width: 96,
                           height: 96,
                           borderRadius: "50%",
-                          background: "linear-gradient(135deg,#6c63ff,#38bdf8)",
+                          background: "linear-gradient(135deg,#6d5efc,#0ea5e9)",
                           fontWeight: 800,
                           fontSize: "1.8rem",
                           color: "#fff",
-                          fontFamily: "Syne, sans-serif",
                           boxShadow:
-                            "0 0 0 4px #0e0e17, 0 0 0 8px rgba(108,99,255,0.18)",
+                            "0 0 0 4px #ffffff, 0 0 0 8px rgba(109,94,252,0.2)",
                         }}
                       >
                         OG
@@ -480,12 +517,12 @@ export default function HomePage() {
                           position: "absolute",
                           bottom: 5,
                           right: 5,
-                          width: 14,
-                          height: 14,
+                          width: 15,
+                          height: 15,
                           borderRadius: "50%",
-                          background: "#22d3a5",
-                          border: "2.5px solid #0e0e17",
-                          boxShadow: "0 0 8px rgba(34,211,165,0.6)",
+                          background: "#10b981",
+                          border: "3px solid #ffffff",
+                          boxShadow: "0 0 8px rgba(16,185,129,0.5)",
                         }}
                       />
                     </div>
@@ -494,11 +531,11 @@ export default function HomePage() {
                   {/* Name */}
                   <div className="text-center mb-4">
                     <div
+                      className="og-display"
                       style={{
-                        fontFamily: "Syne,sans-serif",
                         fontWeight: 800,
-                        fontSize: "1.1rem",
-                        color: "#f0f0f8",
+                        fontSize: "1.15rem",
+                        color: "var(--og-ink)",
                         marginBottom: 4,
                       }}
                     >
@@ -506,10 +543,9 @@ export default function HomePage() {
                     </div>
                     <div
                       style={{
-                        fontSize: "0.72rem",
-                        color: "#454560",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.07em",
+                        fontSize: "0.8rem",
+                        color: "var(--og-muted)",
+                        fontWeight: 500,
                       }}
                     >
                       MERN · AI · Full Stack
@@ -531,11 +567,11 @@ export default function HomePage() {
                             }}
                           />
                           <div
+                            className="og-display"
                             style={{
-                              fontFamily: "Syne,sans-serif",
                               fontWeight: 800,
                               fontSize: "1.05rem",
-                              color: "#f0f0f8",
+                              color: "var(--og-ink)",
                               lineHeight: 1,
                             }}
                           >
@@ -543,9 +579,10 @@ export default function HomePage() {
                           </div>
                           <div
                             style={{
-                              fontSize: "0.65rem",
-                              color: "#f4f4f9",
-                              marginTop: 3,
+                              fontSize: "0.68rem",
+                              color: "var(--og-muted)",
+                              marginTop: 4,
+                              fontWeight: 500,
                             }}
                           >
                             {s.label}
@@ -559,29 +596,17 @@ export default function HomePage() {
                   <div className="mb-3">
                     <div
                       style={{
-                        fontSize: "0.68rem",
-                        color: "#f0f0f8",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.08em",
+                        fontSize: "0.78rem",
+                        color: "var(--og-ink)",
+                        fontWeight: 700,
                         marginBottom: 10,
                       }}
                     >
-                      Tech Stack
+                      Tech stack
                     </div>
                     <div className="d-flex flex-wrap gap-2">
                       {techStack.map((t, i) => (
-                        <span
-                          key={i}
-                          style={{
-                            padding: "4px 10px",
-                            borderRadius: 7,
-                            background: "rgba(108,99,255,0.08)",
-                            border: "1px solid rgba(108,99,255,0.16)",
-                            color: "#a78bfa",
-                            fontSize: "0.73rem",
-                            fontWeight: 500,
-                          }}
-                        >
+                        <span key={i} className="og-tech">
                           {t}
                         </span>
                       ))}
@@ -589,25 +614,22 @@ export default function HomePage() {
                   </div>
 
                   {/* Info rows */}
-                  <div className="d-flex flex-column gap-2">
-                    {[
-                      { icon: "fa-location-dot", text: "Mumbai, India" },
-                      {
-                        icon: "fa-graduation-cap",
-                        text: "B.E. AI & Data Science · 2027",
-                      },
-                    ].map((item, i) => (
+                  <div
+                    className="d-flex flex-column gap-2 pt-3"
+                    style={{ borderTop: "1px solid var(--og-border)" }}
+                  >
+                    {infoRows.map((item, i) => (
                       <div
                         key={i}
                         className="d-flex align-items-center gap-2"
-                        style={{ fontSize: "0.78rem", color: "#e5e5f6" }}
+                        style={{ fontSize: "0.82rem", color: "var(--og-text)" }}
                       >
                         <i
                           className={`fa-solid ${item.icon}`}
                           style={{
                             width: 14,
                             textAlign: "center",
-                            color: "#353550",
+                            color: "var(--og-accent)",
                             flexShrink: 0,
                           }}
                         />

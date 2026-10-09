@@ -4,22 +4,21 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 const skills = [
-  { name: "React", color: "#5b8dee" },
-  { name: "Node.js", color: "#39d5c4" },
-  { name: "MongoDB", color: "#4ade80" },
-  { name: "Next.js", color: "#f0f0f8" },
-  { name: "Python", color: "#fbbf24" },
-  { name: "FastAPI", color: "#9b7ff4" },
-  { name: "Express", color: "#5b8dee" },
-  { name: "TypeScript", color: "#39d5c4" },
-  { name: "Tailwind", color: "#38bdf8" },
+  { name: "React", color: "#0891b2" },
+  { name: "Node.js", color: "#16a34a" },
+  { name: "MongoDB", color: "#059669" },
+  { name: "Python", color: "#d97706" },
+  { name: "FastAPI", color: "#7c3aed" },
+  { name: "Express", color: "#4f46e5" },
 ];
 
 const stats = [
-  { num: "4+", label: "Projects" },
+  { num: "7", label: "Projects" },
   { num: "1", label: "Internship" },
   { num: "2027", label: "Graduate" },
 ];
+
+const RESUME_PDF = "/assets/Omkar Gawali - Full Stack Developer v2.pdf";
 
 export default function Resume() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,309 +37,233 @@ export default function Resume() {
     return () => io.disconnect();
   }, []);
 
+  const DownloadIcon = () => (
+    <svg
+      className="ico"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  );
+
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-        /* ── BASE ── */
-        .rs *  { box-sizing: border-box; margin: 0; padding: 0; }
+        .rs * { box-sizing: border-box; margin: 0; padding: 0; }
         .rs {
+          --bg: #f7f8fc; --surface: #fff; --border: #e4e7f1;
+          --ink: #11142b; --text: #4a5070; --muted: #7a809c;
           position: relative;
           padding: 5rem 0 4.5rem;
-          background: #070710;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-          color: #e8e8f4;
+          background: var(--bg);
+          font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+          color: var(--text);
           overflow: hidden;
+          min-height: calc(100vh - 64px);
         }
-
-        /* ── SUBTLE GRID ── */
         .rs-bg {
           position: absolute; inset: 0; pointer-events: none;
           background-image:
-            linear-gradient(rgba(91,141,238,.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(91,141,238,.03) 1px, transparent 1px);
+            linear-gradient(rgba(17,20,43,.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(17,20,43,.04) 1px, transparent 1px);
           background-size: 44px 44px;
+          -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 30%, black 20%, transparent 100%);
+          mask-image: radial-gradient(ellipse 80% 80% at 50% 30%, black 20%, transparent 100%);
         }
-
-        /* ── GLOW BLOBS ── */
-        .rs-blob {
-          position: absolute; border-radius: 50%; pointer-events: none;
-        }
+        .rs-blob { position: absolute; border-radius: 50%; pointer-events: none; }
         .rs-blob-a {
-          width: 480px; height: 480px; top: -140px; right: -100px;
-          background: radial-gradient(circle, rgba(155,127,244,.06) 0%, transparent 70%);
+          width: 520px; height: 520px; top: -160px; right: -110px;
+          background: radial-gradient(circle, rgba(109,94,252,.16) 0%, transparent 70%);
         }
         .rs-blob-b {
-          width: 380px; height: 380px; bottom: -100px; left: -60px;
-          background: radial-gradient(circle, rgba(57,213,196,.05) 0%, transparent 70%);
+          width: 420px; height: 420px; bottom: -110px; left: -70px;
+          background: radial-gradient(circle, rgba(14,165,233,.14) 0%, transparent 70%);
         }
-
-        /* ── INNER ── */
         .rs-inner {
           max-width: 1020px; margin: 0 auto; padding: 0 1.75rem;
           position: relative; z-index: 1;
         }
 
-        /* ── STAGGER ── */
+        /* Reveal */
         .si { opacity: 0; transform: translateY(22px); transition: opacity .5s ease, transform .5s ease; }
         .si.in { opacity: 1; transform: translateY(0); }
-        .si:nth-child(1) { transition-delay: .00s; }
         .si:nth-child(2) { transition-delay: .07s; }
         .si:nth-child(3) { transition-delay: .14s; }
         .si:nth-child(4) { transition-delay: .21s; }
-        .si:nth-child(5) { transition-delay: .27s; }
-        .si:nth-child(6) { transition-delay: .33s; }
-
-        /* ── HEADER AREA ── */
-        .rs-head {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 1rem;
-          margin-bottom: 2.6rem;
+        @media (prefers-reduced-motion: reduce) {
+          .si { opacity: 1; transform: none; transition: none; }
         }
 
+        /* Header */
+        .rs-head {
+          display: flex; align-items: flex-end; justify-content: space-between;
+          flex-wrap: wrap; gap: 1rem; margin-bottom: 2.6rem;
+        }
         .rs-eyebrow {
           display: inline-flex; align-items: center; gap: 7px;
-          font-size: 10px; font-weight: 600; letter-spacing: .14em;
-          text-transform: uppercase; color: #39d5c4;
-          background: rgba(57,213,196,.08);
-          border: .5px solid rgba(57,213,196,.2);
-          padding: 4px 12px; border-radius: 100px; margin-bottom: 1rem;
+          font-size: 12px; font-weight: 600; color: #047857;
+          background: #ecfdf5; border: 1px solid #a7f3d0;
+          padding: 5px 13px; border-radius: 100px; margin-bottom: 1rem;
         }
-
         .rs-eyebrow-dot {
-          width: 5px; height: 5px; border-radius: 50%; background: #39d5c4;
+          width: 6px; height: 6px; border-radius: 50%; background: #10b981;
           animation: blink 2.2s ease-in-out infinite;
         }
         @keyframes blink {
           0%,100% { opacity: 1; transform: scale(1); }
-          50%      { opacity: .3; transform: scale(.55); }
+          50%     { opacity: .3; transform: scale(.55); }
         }
-
         .rs-h2 {
-          font-size: 2rem; font-weight: 800; line-height: 1.1;
-          color: #f0f0f8; letter-spacing: -.02em;
+          font-size: 2.2rem; font-weight: 800; line-height: 1.1;
+          color: var(--ink); letter-spacing: -.025em;
         }
         .rs-h2 .grd {
-          background: linear-gradient(130deg, #5b8dee 0%, #9b7ff4 100%);
+          background: linear-gradient(130deg, #6d5efc 0%, #0ea5e9 100%);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+        .rs-sub { font-size: 14px; color: var(--text); max-width: 380px; line-height: 1.7; margin-top: .4rem; }
 
-        .rs-sub {
-          font-size: 13.5px; color: #e8e8ed; max-width: 380px;
-          line-height: 1.7; margin-top: .4rem;
-        }
-
-        /* tiny download link in header */
         .rs-dl-mini {
           display: inline-flex; align-items: center; gap: 7px;
-          font-size: 12px; font-weight: 600; color: #9b7ff4;
-          background: rgba(155,127,244,.08);
-          border: .5px solid rgba(155,127,244,.22);
-          padding: 8px 16px; border-radius: 8px;
+          font-size: 12.5px; font-weight: 600; color: #5446e0;
+          background: #fff; border: 1px solid rgba(109,94,252,.3);
+          padding: 9px 18px; border-radius: 9px;
           text-decoration: none; white-space: nowrap;
+          box-shadow: 0 1px 2px rgba(17,20,43,.05);
           transition: background .2s, border-color .2s;
         }
-        .rs-dl-mini:hover {
-          background: rgba(155,127,244,.14);
-          border-color: rgba(155,127,244,.35);
-        }
+        .rs-dl-mini:hover { background: rgba(109,94,252,.08); border-color: rgba(109,94,252,.5); color: #5446e0; }
 
-        /* ── BENTO GRID ── */
-        .rs-bento {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          grid-template-rows: auto auto;
-          gap: 1rem;
-        }
-
+        /* Bento */
+        .rs-bento { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+        .rs-span2 { grid-column: span 2; }
         @media (max-width: 860px) {
           .rs-bento { grid-template-columns: 1fr 1fr; }
-          .rs-card-exp { grid-column: 1 / -1; }
+          .rs-span2 { grid-column: 1 / -1; }
         }
         @media (max-width: 560px) {
           .rs-bento { grid-template-columns: 1fr; }
-          .rs-card-exp { grid-column: auto; }
+          .rs-span2 { grid-column: auto; }
         }
 
-        /* ── CARD BASE ── */
+        /* Card */
         .rc {
-          background: #0c0c1a;
-          border: .5px solid rgba(255,255,255,.065);
+          background: var(--surface);
+          border: 1px solid var(--border);
           border-radius: 16px;
-          padding: 1.35rem;
+          padding: 1.4rem;
           position: relative; overflow: hidden;
-          transition: border-color .28s, transform .22s;
+          box-shadow: 0 2px 8px rgba(40,45,100,.05);
+          transition: border-color .28s, transform .22s, box-shadow .28s;
         }
-        .rc:hover { transform: translateY(-2px); }
-
-        /* shimmer top line */
+        .rc:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(40,45,100,.1); }
         .rc::after {
-          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
           opacity: 0; transition: opacity .28s;
         }
         .rc:hover::after { opacity: 1; }
+        .rc.sh-p:hover { border-color: rgba(124,58,237,.35); }
+        .rc.sh-p::after { background: linear-gradient(90deg,transparent,#7c3aed,transparent); }
+        .rc.sh-b:hover { border-color: rgba(37,99,235,.35); }
+        .rc.sh-b::after { background: linear-gradient(90deg,transparent,#2563eb,transparent); }
+        .rc.sh-c:hover { border-color: rgba(13,148,136,.35); }
+        .rc.sh-c::after { background: linear-gradient(90deg,transparent,#0d9488,transparent); }
+        .rc.sh-a:hover { border-color: rgba(217,119,6,.35); }
+        .rc.sh-a::after { background: linear-gradient(90deg,transparent,#d97706,transparent); }
 
-        .rc.sh-p:hover  { border-color: rgba(155,127,244,.24); }
-        .rc.sh-p::after { background: linear-gradient(90deg,transparent,rgba(155,127,244,.5),transparent); }
-        .rc.sh-b:hover  { border-color: rgba(91,141,238,.24); }
-        .rc.sh-b::after { background: linear-gradient(90deg,transparent,rgba(91,141,238,.5),transparent); }
-        .rc.sh-c:hover  { border-color: rgba(57,213,196,.2); }
-        .rc.sh-c::after { background: linear-gradient(90deg,transparent,rgba(57,213,196,.45),transparent); }
-        .rc.sh-a:hover  { border-color: rgba(251,191,36,.2); }
-        .rc.sh-a::after { background: linear-gradient(90deg,transparent,rgba(251,191,36,.4),transparent); }
-
-        /* ghost number */
-        .rc-num {
-          position: absolute; top: 1rem; right: 1.1rem;
-          font-size: 2.8rem; font-weight: 800; line-height: 1;
-          color: rgba(255,255,255,.022); pointer-events: none; user-select: none;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        /* ── CARD HEADER ── */
         .rc-hdr { display: flex; align-items: center; gap: 9px; margin-bottom: 1rem; }
         .rc-icon {
-          width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+          width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
           display: flex; align-items: center; justify-content: center;
         }
-        .ic-p { background: rgba(155,127,244,.12); color: #9b7ff4; border: .5px solid rgba(155,127,244,.22); }
-        .ic-b { background: rgba(91,141,238,.12);  color: #5b8dee; border: .5px solid rgba(91,141,238,.22); }
-        .ic-c { background: rgba(57,213,196,.1);   color: #39d5c4; border: .5px solid rgba(57,213,196,.2); }
-        .ic-a { background: rgba(251,191,36,.1);   color: #fbbf24; border: .5px solid rgba(251,191,36,.2); }
+        .ic-p { background: rgba(124,58,237,.1); color: #7c3aed; }
+        .ic-b { background: rgba(37,99,235,.1);  color: #2563eb; }
+        .ic-c { background: rgba(13,148,136,.1); color: #0d9488; }
+        .ic-a { background: rgba(217,119,6,.1);  color: #d97706; }
+        .rc-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+        .rc-body { font-size: 13px; color: var(--text); line-height: 1.78; margin-bottom: 1rem; }
 
-        .rc-title {
-          font-size: 12.5px; font-weight: 700; color: #d0d0e8; letter-spacing: .01em;
-        }
+        /* Tags */
+        .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+        .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+        .tg-p { background: rgba(124,58,237,.08); color: #6d28d9; border: 1px solid rgba(124,58,237,.18); }
+        .tg-b { background: rgba(37,99,235,.08);  color: #1d4ed8; border: 1px solid rgba(37,99,235,.18); }
+        .tg-c { background: rgba(13,148,136,.08); color: #0f766e; border: 1px solid rgba(13,148,136,.18); }
+        .tg-a { background: rgba(217,119,6,.08);  color: #b45309; border: 1px solid rgba(217,119,6,.2); }
 
-        /* ── BODY TEXT ── */
-        .rc-body {
-          font-size: 12.5px; color: #f2f2f4; line-height: 1.78;
-          margin-bottom: 1rem;
-        }
+        .rdiv { height: 1px; background: var(--border); margin: 1rem 0; }
 
-        /* ── TAGS ── */
-        .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; }
-        .tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 100px; letter-spacing: .04em; }
-        .tg-p { background: rgba(155,127,244,.1); color: #9b7ff4; border: .5px solid rgba(155,127,244,.2); }
-        .tg-b { background: rgba(91,141,238,.1);  color: #5b8dee; border: .5px solid rgba(91,141,238,.2); }
-        .tg-c { background: rgba(57,213,196,.08); color: #39d5c4; border: .5px solid rgba(57,213,196,.16); }
-        .tg-a { background: rgba(251,191,36,.08); color: #fbbf24; border: .5px solid rgba(251,191,36,.16); }
-
-        /* ── DIVIDER ── */
-        .rdiv { height: .5px; background: rgba(252, 255, 249, 0.05); margin: 1rem 0; }
-
-        /* ── STAT STRIP ── */
+        /* Stats */
         .stat-row { display: flex; gap: 1.8rem; flex-wrap: wrap; }
         .stat-n {
-          font-size: 20px; font-weight: 800;
-          background: linear-gradient(135deg, #5b8dee, #9b7ff4);
+          font-size: 22px; font-weight: 800; display: block;
+          background: linear-gradient(135deg, #6d5efc, #0ea5e9);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-          background-clip: text; display: block;
+          background-clip: text;
         }
-        .stat-l { font-size: 9.5px; color: #ededef; text-transform: uppercase; letter-spacing: .1em; margin-top: 1px; display: block; }
+        .stat-l { font-size: 11.5px; color: var(--muted); font-weight: 500; margin-top: 1px; display: block; }
 
-        /* ── EXPERIENCE ── */
-        .exp-top {
-          display: flex; align-items: flex-start;
-          justify-content: space-between; flex-wrap: wrap; gap: 6px;
-          margin-bottom: 3px;
-        }
-        .exp-role { font-size: 13.5px; font-weight: 700; color: #e0e0f4; }
+        /* Experience */
+        .exp-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 3px; }
+        .exp-role { font-size: 15px; font-weight: 700; color: var(--ink); }
         .exp-pill {
-          font-size: 9.5px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
-          background: rgba(57,213,196,.09); color: #39d5c4;
-          border: .5px solid rgba(57,213,196,.18); white-space: nowrap; letter-spacing: .04em;
+          font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px;
+          background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; white-space: nowrap;
         }
-        .exp-co {
-          font-size: 11px; color: #efeff0; margin-bottom: .8rem;
-          display: flex; align-items: center; gap: 5px;
-        }
-        .exp-co::before {
-          content: ''; width: 3px; height: 3px; border-radius: 50%;
-          background: #9b7ff4; display: inline-block; flex-shrink: 0;
-        }
+        .exp-co { font-size: 12.5px; color: var(--muted); margin-bottom: .8rem; display: flex; align-items: center; gap: 6px; }
+        .exp-co::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #6d5efc; flex-shrink: 0; }
         .exp-ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-        .exp-ul li {
-          font-size: 12px; color: #f5f5f8; line-height: 1.7;
-          padding-left: 13px; position: relative;
-        }
-        .exp-ul li::before {
-          content: ''; position: absolute; left: 0; top: 8px;
-          width: 5px; height: 1.5px; background: #5b8dee; border-radius: 2px;
-        }
+        .exp-ul li { font-size: 13px; color: var(--text); line-height: 1.7; padding-left: 14px; position: relative; }
+        .exp-ul li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 2px; background: #6d5efc; border-radius: 2px; }
 
-        /* ── EDUCATION ── */
+        /* Education */
         .edu-logo {
-          width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
-          background: rgba(57,213,196,.09);
-          border: .5px solid rgba(57,213,196,.18);
-          display: flex; align-items: center; justify-content: center; color: #39d5c4;
+          width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
+          background: rgba(13,148,136,.1); color: #0d9488;
+          display: flex; align-items: center; justify-content: center;
         }
         .edu-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .8rem; }
-        .edu-l     { display: flex; align-items: center; gap: 11px; }
-        .edu-r     { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
-        .edu-deg   { font-size: 13px; font-weight: 700; color: #e0e0f4; margin-bottom: 2px; }
-        .edu-meta  { font-size: 11px; color: #f8f8fa; line-height: 1.55; }
+        .edu-l { display: flex; align-items: center; gap: 12px; }
+        .edu-r { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+        .edu-deg { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+        .edu-meta { font-size: 12.5px; color: var(--text); line-height: 1.55; }
         .edu-badge {
-          font-size: 11px; font-weight: 700; padding: 5px 13px; border-radius: 100px;
-          background: rgba(155,127,244,.1); color: #9b7ff4;
-          border: .5px solid rgba(155,127,244,.22);
+          font-size: 12px; font-weight: 700; padding: 5px 13px; border-radius: 100px;
+          background: rgba(109,94,252,.1); color: #5446e0; border: 1px solid rgba(109,94,252,.22);
         }
 
-        /* ── SKILLS ── */
+        /* Skills */
         .sk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
         .sk-item {
-          background: rgba(255,255,255,.022);
-          border: .5px solid rgba(255,255,255,.05);
+          background: var(--bg); border: 1px solid var(--border);
           border-radius: 8px; padding: 8px 10px;
           display: flex; align-items: center; gap: 6px;
           transition: background .18s, border-color .18s;
         }
-        .sk-item:hover { background: rgba(91,141,238,.06); border-color: rgba(91,141,238,.16); }
-        .sk-dot  { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-        .sk-name { font-size: 11px; color: #f4f4f9; font-weight: 600; white-space: nowrap; }
+        .sk-item:hover { background: rgba(109,94,252,.07); border-color: rgba(109,94,252,.28); }
+        .sk-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+        .sk-name { font-size: 11.5px; color: var(--ink); font-weight: 600; white-space: nowrap; }
 
-        /* ── CTA ROW ── */
-        .cta-row {
-          display: flex; justify-content: center; align-items: center;
-          gap: .85rem; margin-top: 2.2rem; flex-wrap: wrap;
-        }
-
-        .btn-dl {
-          display: inline-flex; align-items: center; gap: 8px;
-          background: linear-gradient(135deg, #5b8dee 0%, #9b7ff4 100%);
-          color: #fff; font-size: 12.5px; font-weight: 700;
-          padding: 11px 26px; border-radius: 10px;
-          text-decoration: none; border: none; cursor: pointer;
-          letter-spacing: .02em; position: relative; overflow: hidden;
-          box-shadow: 0 6px 22px rgba(91,141,238,.24);
-          transition: transform .2s, box-shadow .2s;
-        }
-        .btn-dl::before {
-          content: ''; position: absolute; inset: 0;
-          background: linear-gradient(135deg, rgba(255,255,255,.12), transparent);
-          opacity: 0; transition: opacity .2s;
-        }
-        .btn-dl:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(91,141,238,.34); }
-        .btn-dl:hover::before { opacity: 1; }
-        .btn-dl:active { transform: scale(.97); }
-
+        /* CTA */
+        .cta-row { display: flex; justify-content: center; align-items: center; gap: .85rem; margin-top: 2.2rem; flex-wrap: wrap; }
         .btn-ol {
           display: inline-flex; align-items: center; gap: 6px;
-          font-size: 12.5px; font-weight: 600; color: #5e5e80;
-          text-decoration: none; padding: 11px 20px; border-radius: 10px;
-          border: .5px solid rgba(255,255,255,.09);
-          background: rgba(255,255,255,.025);
-          transition: color .18s, border-color .18s, background .18s; cursor: pointer;
+          font-size: 12.5px; font-weight: 600; color: var(--ink);
+          text-decoration: none; padding: 9px 20px; border-radius: 9px;
+          border: 1px solid var(--border); background: #fff;
+          box-shadow: 0 1px 2px rgba(17,20,43,.05);
+          transition: all .18s;
         }
-        .btn-ol:hover { color: #d0d0f0; border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.05); }
-
-        /* ── ICON UTIL ── */
+        .btn-ol:hover { color: #5446e0; border-color: rgba(109,94,252,.4); background: rgba(109,94,252,.06); }
+        .rs-dl-mini:focus-visible, .btn-ol:focus-visible { outline: 3px solid rgba(109,94,252,.45); outline-offset: 2px; }
         .ico { width: 14px; height: 14px; display: inline-block; vertical-align: middle; flex-shrink: 0; }
       `}</style>
 
@@ -350,7 +273,7 @@ export default function Resume() {
         <div className="rs-blob rs-blob-b" />
 
         <div className="rs-inner">
-          {/* ── HEADER ── */}
+          {/* Header */}
           <div className="rs-head si">
             <div>
               <div className="rs-eyebrow">
@@ -364,31 +287,20 @@ export default function Resume() {
                 Internships, education, and the stack I ship with.
               </p>
             </div>
-
             <a
-              href="/assests/Omkar Gawali -  Full Stack Developer.pdf"
+              href={RESUME_PDF}
               target="_blank"
               rel="noopener noreferrer"
               className="rs-dl-mini"
             >
-              <svg
-                className="ico"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
+              <DownloadIcon />
               Download PDF
             </a>
           </div>
 
-          {/* ── BENTO GRID ── */}
+          {/* Bento */}
           <div className="rs-bento">
-            {/* 01 — SUMMARY */}
+            {/* Summary */}
             <div className="rc sh-p si">
               <div className="rc-hdr">
                 <div className="rc-icon ic-p">
@@ -405,13 +317,11 @@ export default function Resume() {
                 </div>
                 <span className="rc-title">Summary</span>
               </div>
-
               <p className="rc-body">
                 MERN Stack Developer building and deploying full-stack web apps
                 with React, Node.js, Express, MongoDB, and Next.js. Pursuing
                 B.E. in AI &amp; Data Science.
               </p>
-
               <div className="tag-row">
                 <span className="tag tg-b">Full Stack</span>
                 <span className="tag tg-p">MERN</span>
@@ -428,12 +338,8 @@ export default function Resume() {
               </div>
             </div>
 
-            {/* 02 — EXPERIENCE (spans 2 cols on ≥860px) */}
-            <div
-              className="rc sh-b si rs-card-exp"
-              style={{ gridColumn: "span 2" }}
-            >
-              <span className="rc-num">02</span>
+            {/* Experience */}
+            <div className="rc sh-b si rs-span2">
               <div className="rc-hdr">
                 <div className="rc-icon ic-b">
                   <svg
@@ -473,7 +379,7 @@ export default function Resume() {
                 </li>
               </ul>
 
-              <div className="rdiv" style={{ marginBottom: ".8rem" }} />
+              <div className="rdiv" />
               <div className="tag-row" style={{ marginBottom: 0 }}>
                 <span className="tag tg-b">C++</span>
                 <span className="tag tg-p">Canva</span>
@@ -482,9 +388,8 @@ export default function Resume() {
               </div>
             </div>
 
-            {/* 03 — EDUCATION */}
-            <div className="rc sh-c si" style={{ gridColumn: "span 2" }}>
-              <span className="rc-num">03</span>
+            {/* Education */}
+            <div className="rc sh-c si rs-span2">
               <div className="rc-hdr">
                 <div className="rc-icon ic-c">
                   <svg
@@ -528,16 +433,13 @@ export default function Resume() {
                 </div>
                 <div className="edu-r">
                   <span className="edu-badge">Grad 2027</span>
-                  <span className="tag tg-c" style={{ fontSize: "9.5px" }}>
-                    Active
-                  </span>
+                  <span className="tag tg-c">Active</span>
                 </div>
               </div>
             </div>
 
-            {/* 04 — TECH STACK */}
+            {/* Tech stack */}
             <div className="rc sh-a si">
-              <span className="rc-num">04</span>
               <div className="rc-hdr">
                 <div className="rc-icon ic-a">
                   <svg
@@ -553,7 +455,6 @@ export default function Resume() {
                 </div>
                 <span className="rc-title">Tech Stack</span>
               </div>
-
               <div className="sk-grid">
                 {skills.map((s) => (
                   <div className="sk-item" key={s.name}>
@@ -565,25 +466,15 @@ export default function Resume() {
             </div>
           </div>
 
-          {/* ── CTA ROW ── */}
+          {/* CTA */}
           <div className="cta-row si">
             <a
-              href="/assests/Omkar Gawali -  Full Stack Developer.pdf"
+              href={RESUME_PDF}
               target="_blank"
               rel="noopener noreferrer"
               className="rs-dl-mini"
             >
-              <svg
-                className="ico"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
+              <DownloadIcon />
               Download Full Resume
             </a>
             <Link href="/projects" className="btn-ol">
