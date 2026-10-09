@@ -39,7 +39,7 @@ export default function HomePage() {
 
   const stats = [
     {
-      value: "7",
+      value: "6",
       label: "Projects",
       icon: "fa-diagram-project",
       color: "#6d5efc",
