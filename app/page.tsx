@@ -78,14 +78,7 @@ export default function HomePage() {
     },
   ];
 
-  const techStack = [
-    "React",
-    "Node.js",
-    "MongoDB",
-    "Next.js",
-    "Python",
-    "FastAPI",
-  ];
+  const techStack = ["React", "Node.js", "MongoDB", "Python", "FastAPI"];
 
   const infoRows = [
     { icon: "fa-location-dot", text: "Mumbai, India" },
@@ -449,7 +442,7 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="/assets/Omkar Gawali - Full Stack Developer v2.pdf"
+                  href="/assets/Omkar Gawali - Full Stack Developer v3.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="og-btn-secondary"

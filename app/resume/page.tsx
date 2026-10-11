@@ -18,7 +18,7 @@ const stats = [
   { num: "2027", label: "Graduate" },
 ];
 
-const RESUME_PDF = "/assets/Omkar Gawali - Full Stack Developer v2.pdf";
+const RESUME_PDF = "/assets/Omkar Gawali - Full Stack Developer v3.pdf";
 
 export default function Resume() {
   const sectionRef = useRef<HTMLElement>(null);
