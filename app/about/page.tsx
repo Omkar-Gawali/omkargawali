@@ -30,12 +30,7 @@ export default function AboutPage() {
       color: "#059669",
     },
     { prefix: "fa-brands", icon: "fa-git-alt", label: "Git", color: "#f05032" },
-    {
-      prefix: "fa-brands",
-      icon: "fa-square-js",
-      label: "Next.js",
-      color: "#11142b",
-    },
+
     {
       prefix: "fa-solid",
       icon: "fa-server",

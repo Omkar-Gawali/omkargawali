@@ -319,8 +319,8 @@ export default function Resume() {
               </div>
               <p className="rc-body">
                 MERN Stack Developer building and deploying full-stack web apps
-                with React, Node.js, Express, MongoDB, and Next.js. Pursuing
-                B.E. in AI &amp; Data Science.
+                with React, Node.js, Express.js, and MongoDB. Pursuing B.E. in
+                AI &amp; Data Science.
               </p>
               <div className="tag-row">
                 <span className="tag tg-b">Full Stack</span>
@@ -427,7 +427,7 @@ export default function Resume() {
                       Mumbai University · Mumbai, India
                     </div>
                     <div className="edu-meta">
-                      ML · Deep Learning · Full Stack
+                      Terna Engineering College, Nerul
                     </div>
                   </div>
                 </div>
